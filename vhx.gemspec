@@ -6,7 +6,6 @@ Gem::Specification.new do |spec|
   spec.name           = 'vhx-ruby'
   spec.version        = Vhx::VERSION
   spec.authors        = ['Vimeo OTT Developers']
-  spec.date           = '2020-01-27'
   spec.description    = 'A Ruby wrapper for the VHX developer API.'
   spec.summary        = 'A Ruby wrapper for the VHX developer API.'
   spec.email          = ['dev@vhx.tv']
@@ -18,9 +17,10 @@ Gem::Specification.new do |spec|
   spec.test_files     = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths  = ['lib']
 
-  # Gems that must be installed
-  spec.add_dependency 'faraday', '~> 0.9'
-  spec.add_dependency 'faraday_middleware', '~> 0.9'
+  spec.required_ruby_version = '>= 3.0'
+
+  spec.add_dependency 'faraday', '~> 2.0'
+  spec.add_dependency 'ostruct'
 
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'webmock'

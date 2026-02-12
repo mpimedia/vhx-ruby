@@ -1,5 +1,6 @@
 require 'vhx'
 require 'json'
+require 'ostruct'
 require 'webmock/rspec'
 
 RSpec.configure do |config|

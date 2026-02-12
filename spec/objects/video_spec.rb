@@ -18,7 +18,7 @@ describe Vhx::Video do
 
     describe '::find' do
       it 'does not error' do
-        Vhx.connection.stub(:get).and_return(OpenStruct.new(body: video_response))
+        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: video_response))
         expect{Vhx::Video.find(123)}.to_not raise_error
       end
 
@@ -41,14 +41,14 @@ describe Vhx::Video do
 
     describe '::retrieve' do
       it 'does not error' do
-        Vhx.connection.stub(:get).and_return(OpenStruct.new(body: video_response))
+        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: video_response))
         expect{Vhx::Video.retrieve(123)}.to_not raise_error
       end
     end
 
     describe '::list' do
       it 'does not error' do
-        Vhx.connection.stub(:get).and_return(OpenStruct.new(body: videos_response))
+        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: videos_response))
         expect{Vhx::Video.list()}.to_not raise_error
       end
 
@@ -71,21 +71,21 @@ describe Vhx::Video do
 
     describe '::all' do
       it 'does not error' do
-        Vhx.connection.stub(:get).and_return(OpenStruct.new(body: videos_response))
+        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: videos_response))
         expect{Vhx::Video.all()}.to_not raise_error
       end
     end
 
     describe '::create' do
       it 'raises error' do
-        Vhx.connection.stub(:post).and_return(OpenStruct.new(body: videos_response))
+        allow(Vhx.connection).to receive(:post).and_return(OpenStruct.new(body: videos_response))
         expect{Vhx::Video.create({})}.to_not raise_error
       end
     end
 
     describe '#update' do
       it 'raises error' do
-        Vhx.connection.stub(:put).and_return(OpenStruct.new(body: video_response))
+        allow(Vhx.connection).to receive(:put).and_return(OpenStruct.new(body: video_response))
         expect{Vhx::Video.new(video_response).update({})}.not_to raise_error
       end
 
@@ -118,7 +118,7 @@ describe Vhx::Video do
       end
 
       it 'fetches linked association' do
-        Vhx.connection.stub(:get).and_return(OpenStruct.new(body: files_response))
+        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: files_response))
         files = Vhx::Video.new(video_response).files
         expect(files.first.class).to eq(Vhx::Video::File)
         expect(Vhx.connection).to have_received(:get)

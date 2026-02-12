@@ -28,7 +28,7 @@ module Vhx
 
         faraday.use Vhx::Middleware::ErrorResponse
         faraday.response :json
-        faraday.adapter Faraday.default_adapter
+        faraday.adapter :net_http
       end
       @connection
     end
@@ -37,7 +37,7 @@ module Vhx
       if access_token
         @headers[:Authorization] = "Bearer #{access_token}"
       elsif api_key
-        @headers[:Authorization] = Faraday::Request::BasicAuthentication.header(api_key, '')
+        @headers[:Authorization] = "Basic #{["#{api_key}:"].pack('m0')}"
       end
 
       @headers
