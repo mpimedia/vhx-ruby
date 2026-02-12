@@ -14,14 +14,14 @@ describe Vhx::User do
 
     describe '::find' do
       it 'raises error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: user_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(user_response))
         expect{Vhx::User.find(123)}.to_not raise_error
       end
     end 
 
     describe '::retrieve' do
       it 'raises error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: user_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(user_response))
         expect{Vhx::User.retrieve(123)}.to_not raise_error
       end
     end

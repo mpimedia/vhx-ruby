@@ -1,5 +1,4 @@
 require 'faraday'
-require 'ostruct'
 
 require "vhx/version"
 require "vhx/error"

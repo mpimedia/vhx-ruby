@@ -18,28 +18,28 @@ describe Vhx::Product do
 
     describe '::find' do
       it 'does not error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: product_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(product_response))
         expect{Vhx::Product.find(123)}.to_not raise_error 
       end
     end 
 
     describe '::retrieve' do
       it 'does not error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: product_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(product_response))
         expect{Vhx::Product.retrieve(123)}.to_not raise_error 
       end
     end
 
     describe '::list' do
       it 'does not error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: products_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(products_response))
         expect{Vhx::Product.list()}.to_not raise_error 
       end
     end
 
     describe '::all' do
       it 'does not error' do
-        allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: products_response))
+        allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(products_response))
         expect{Vhx::Product.all()}.to_not raise_error 
       end
     end

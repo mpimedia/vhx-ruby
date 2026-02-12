@@ -74,7 +74,7 @@ describe Vhx::VhxObject do
     end
 
     it 'falls back to links' do
-      allow(Vhx.connection).to receive(:get).and_return(OpenStruct.new(body: products_response))
+      allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(products_response))
       customer_no_embedded = customer_response
       customer_no_embedded['_embedded'] = {}
       customer = Vhx::Customer.new(customer_no_embedded)
