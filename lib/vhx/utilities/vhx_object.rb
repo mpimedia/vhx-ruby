@@ -28,7 +28,7 @@ module Vhx
       @obj_hash['_links'].each do |k, v|
         data[k] = v['href']
       end
-      return OpenStruct.new(data)
+      Struct.new(*data.keys.map(&:to_sym)).new(*data.values)
     end
 
     def _links

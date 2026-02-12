@@ -84,8 +84,8 @@ describe Vhx::Client do
 
       it 'oauth_token refreshed' do
         new_token_hash = {access_token: '123', refresh_token: '456', expires_in: '3600'}
-        new_token_response = OpenStruct.new(body: new_token_hash)
-        Faraday::Connection.any_instance.stub(:post).and_return(new_token_response)
+        new_token_response = FakeResponse.new(new_token_hash)
+        allow_any_instance_of(Faraday::Connection).to receive(:post).and_return(new_token_response)
         original_access_token = oauth_token.access_token 
         vhx_client.refresh_access_token! 
         expect(vhx_client.oauth_token.refreshed).to eq(true)
@@ -93,8 +93,8 @@ describe Vhx::Client do
 
       it 'access_token changed' do
         new_token_hash = {access_token: '123', refresh_token: '456', expires_in: '3600'}
-        new_token_response = OpenStruct.new(body: new_token_hash)
-        Faraday::Connection.any_instance.stub(:post).and_return(new_token_response)
+        new_token_response = FakeResponse.new(new_token_hash)
+        allow_any_instance_of(Faraday::Connection).to receive(:post).and_return(new_token_response)
         original_access_token = oauth_token.access_token 
         vhx_client.refresh_access_token! 
         expect(vhx_client.oauth_token.access_token).to_not eq(original_access_token)

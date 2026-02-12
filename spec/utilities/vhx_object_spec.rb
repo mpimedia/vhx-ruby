@@ -66,7 +66,7 @@ describe Vhx::VhxObject do
     }
 
     it 'default to embedded' do
-      Vhx.connection.stub(:get)
+      allow(Vhx.connection).to receive(:get)
       customer = Vhx::Customer.new(customer_response)
       products = customer.products
       expect(products).to be_instance_of Vhx::VhxListObject
@@ -74,7 +74,7 @@ describe Vhx::VhxObject do
     end
 
     it 'falls back to links' do
-      Vhx.connection.stub(:get).and_return(OpenStruct.new(body: products_response))
+      allow(Vhx.connection).to receive(:get).and_return(FakeResponse.new(products_response))
       customer_no_embedded = customer_response
       customer_no_embedded['_embedded'] = {}
       customer = Vhx::Customer.new(customer_no_embedded)

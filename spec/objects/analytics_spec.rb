@@ -36,6 +36,6 @@ describe Vhx::Analytics do
   def stub_analytics(response:, query_params:)
     stub_request(:get, %r{api.vhx.tv/analytics}).
       with(query: hash_including(query_params)).
-      to_return(body: response.to_json)
+      to_return(body: response.to_json, headers: { 'Content-Type' => 'application/json' })
   end
 end

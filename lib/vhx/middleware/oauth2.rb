@@ -13,9 +13,9 @@ module Vhx
         end
       end
 
-      def initialize(app, options={})
-        super(app)
-        @vhx_client = options[:vhx_client]
+      def initialize(app, vhx_client: nil, **options)
+        super(app, **options)
+        @vhx_client = vhx_client
       end
     end
   end

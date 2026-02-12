@@ -38,7 +38,7 @@ describe Vhx::Authorization do
       end
 
       it 'does not error' do
-        Vhx.connection.stub(:post).and_return(OpenStruct.new(body: authorization_response))
+        allow(Vhx.connection).to receive(:post).and_return(FakeResponse.new(authorization_response))
         expect{Vhx::Authorization.create({})}.to_not raise_error
       end
     end
