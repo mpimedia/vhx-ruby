@@ -20,7 +20,6 @@ module Vhx
       @connection = Faraday::Connection.new(url: api_base_url, headers: configured_headers, ssl: ssl) do |faraday|
         faraday.request  :url_encoded
         faraday.request  :json
-        faraday.response :logger
 
         if @auto_refresh
           faraday.use Vhx::Middleware::OAuth2, :vhx_client => self
